@@ -1,0 +1,37 @@
+<div class="header">
+  <h2>Employee List</h2>
+  <button routerLink="/add-employees" class="add-button">Add Employee</button>
+</div>
+<div>
+  <button routerLink="/signup" class="add-button">Logout</button>
+
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Salary</th>
+      <th>Date of Joining</th>
+      <th>Department</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of (employees$ | async)?.data?.getAllEmployees">
+      <td>{{ emp.first_name }} {{ emp.last_name}}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.salary }}</td>
+      <td>{{ emp.date_of_joining | date:'mediumDate' }}</td>
+      <td>{{ emp.department }}</td>
+
+      <td class="actions">
+        <button (click)="viewEmployee(emp.id)" class="view-button">View</button>
+        <button (click)="deleteEmployee(emp.id)" class="delete-button">Delete</button>
+        <button (click)="editEmployee(emp.id)" class="">Edit</button>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>

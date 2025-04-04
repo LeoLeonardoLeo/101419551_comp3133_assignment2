@@ -1,0 +1,36 @@
+<div *ngIf="loading" class="loading">Loading employee details...</div>
+<div *ngIf="error" class="error">Error loading employee: {{ error.message }}</div>
+
+<div *ngIf="employee" class="employee-detail">
+  <div class="detail-header">
+    <h2>{{ employee.first_name }} {{ employee.last_name }}</h2>
+    <button routerLink="/employee-stuff" class="back-button">Back to List</button>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-item">
+      <span class="label">Email:</span>
+      <span>{{ employee.email }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Gender:</span>
+      <span>{{ employee.gender }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Designation:</span>
+      <span>{{ employee.designation }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Salary:</span>
+      <span>{{ employee.salary | currency }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Date of Joining:</span>
+      <span>{{ employee.date_of_joining | date:'mediumDate' }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Department:</span>
+      <span>{{ employee.department }}</span>
+    </div>
+  </div>
+</div>
