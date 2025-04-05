@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GET_ALL_EMPLOYEES, DELETE_EMPLOYEE } from '../graphql/employee.graphql';
 
+
 @Component({
   selector: 'app-employee-stuff',
   standalone: true,
@@ -14,7 +15,9 @@ import { GET_ALL_EMPLOYEES, DELETE_EMPLOYEE } from '../graphql/employee.graphql'
   styleUrls: ['./employee-stuff.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-  employees$!: Observable<any>;
+  employees$!: Observable<any>
+  filteredEmployees: any[] = []
+  searchString: string = ''
 
   constructor(
     private apollo: Apollo,
@@ -25,29 +28,34 @@ export class EmployeeListComponent implements OnInit {
     this.employees$ = this.apollo.watchQuery<any>({
       query: GET_ALL_EMPLOYEES
     }).valueChanges;
-  }
 
-    deleteEmployee(id: string){
-    if (confirm("Do you want to delete this employee?")) {
-      this.apollo.mutate({
-        mutation: DELETE_EMPLOYEE,
-        variables: { id },
-        refetchQueries: [{ query: GET_ALL_EMPLOYEES }]
-      }).subscribe({
-        
-        //the following auto updates the list because i dont want to always refresh
-        next: () => {
-          this.employees$ = this.apollo.watchQuery<any>({
-            query: GET_ALL_EMPLOYEES,
-            fetchPolicy: 'network-only' //force refreshes
+    this.employees$.subscribe((response) => {
+      this.filteredEmployees = response.data.GET_ALL_EMPLOYEES
+    })
+  }
+  
+
+  deleteEmployee(id: string){
+  if (confirm("Do you want to delete this employee?")) {
+    this.apollo.mutate({
+      mutation: DELETE_EMPLOYEE,
+      variables: { id },
+      refetchQueries: [{ query: GET_ALL_EMPLOYEES }]
+    }).subscribe({
+
+      //the following auto updates the list because i dont want to always refresh
+      next: () => {
+        this.employees$ = this.apollo.watchQuery<any>({
+          query: GET_ALL_EMPLOYEES,
+          fetchPolicy: 'network-only' //force refreshes
           }).valueChanges
         }
-      });
+      })
     }
   }
 
   viewEmployee(id: string){
-    this.router.navigate(['/employee', id]);
+    this.router.navigate(['/employee', id])
   }
 
   editEmployee(id: string){

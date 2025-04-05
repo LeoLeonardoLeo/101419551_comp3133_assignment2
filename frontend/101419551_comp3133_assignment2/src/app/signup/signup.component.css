@@ -1,70 +1,81 @@
-.signup-container {
-    font-family: Arial, Helvetica, sans-serif;
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 12px; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd; 
+.page-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*for the cool background*/
+  background: linear-gradient(135deg, #7500cf, #021075, #7500cf);
+  padding: 1rem;
+  box-sizing: border-box;
 }
-  
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
-  input.invalid {
-    border-color: #ff4444;
-  }
-  
-  .error {
-    color: #ff4444;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-  }
-  
-  button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #3367d6;
-  }
-  
-  
-  .server-error {
-    color: #ff4444;
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
-  .login-link {
-    text-align: center;
-    margin-top: 1.5rem;
-  }
-  
-  .login-link a {
-    color: #4285f4;
-    text-decoration: none;
-  }
+
+.signup-container {
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.signup-container h2 {
+  color: #6a0dad;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: 600;
+  color: #4b0082;
+}
+
+input {
+  padding: 0.6rem;
+  border: 2px solid #d8bfd8;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+
+button {
+  padding: 0.8rem;
+  background-color: #ba55d3;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #9932cc;
+}
+
+.error {
+  color: #b22222;
+  font-size: 0.875rem;
+}
+
+.login-link {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+  color: #8a2be2;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

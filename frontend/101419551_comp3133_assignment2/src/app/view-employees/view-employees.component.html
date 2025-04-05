@@ -1,6 +1,5 @@
 <div *ngIf="loading" class="loading">Loading employee details...</div>
-<div *ngIf="error" class="error">Error loading employee: {{ error.message }}</div>
-
+<div class="background">
 <div *ngIf="employee" class="employee-detail">
   <div class="detail-header">
     <h2>{{ employee.first_name }} {{ employee.last_name }}</h2>
@@ -33,4 +32,5 @@
       <span>{{ employee.department }}</span>
     </div>
   </div>
+</div>
 </div>
